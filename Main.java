@@ -4,8 +4,8 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner kb = new Scanner(System.in);
-		System.out.println("Please enter the age: ");
-		//int input = kb.nextInt();
+		System.out.println("How would you like to sort this: ");
+		int input = kb.nextInt();
 		
 		Person[] people = new Person[25];
 		people[0] = new Person("Dustin","Cobb", 61,"Pepkor Park", "Zuhhotseb", "NM", "37990");
@@ -34,11 +34,29 @@ public class Main {
 		people[23] = new Person("Blake","Roberson",64,"Docuk Point","Bifira","SC","90570");
 		people[24] = new Person("Theodore","Gardner",20,"Jada Key","Bejimu","ID","29394");
 		
-		Person[] people1 = people.clone();
-		selectionSort(people1);
-		bubbleSort(people);
+		//Person[] people1 = people.clone();
+	//	selectionSort(people1);
+	//	bubbleSort(people);
 		
-		/*for(int i = 0; i < people.length; i++)
+		switch (input)
+		{
+		case 1:
+			bubbleSort(people);
+			break;
+		
+		case 2:
+			selectionSort(people);
+			break;
+		
+		case 3:
+			insertionSort(people);
+			break;
+			
+		default:
+			System.out.println("Sorry invalid choice");
+			
+		}
+		for(int i = 0; i < people.length; i++)
 		{
 			
 			Person p = people[i];
@@ -46,16 +64,9 @@ public class Main {
 				//{
 					System.out.println(p.FName + ' ' + p.LName + ' ' + p.Age + ' ' + p.Address + ' ' + p.City + ' ' + p.State + ' ' + p.Zip);
 				//}
-		}*/
-		
-		for(int i = 0; i < people.length; i++)
-		{
-			
-			Person p = people1[i];
-		
-					System.out.println(p.FName + ' ' + p.LName + ' ' + p.Age + ' ' + p.Address + ' ' + p.City + ' ' + p.State + ' ' + p.Zip);
-				
 		}
+		
+		
 	}
 		private static void bubbleSort(Person[] people)
 		{
@@ -79,25 +90,30 @@ public class Main {
 
 		}
 		
-		private static void selectionSort(Person[] people1)
+		private static void selectionSort(Person[] people)
 		{
 			Person temp = null;
 			
-			for (int i = 0; i < people1.length; i++)
+			for (int i = 0; i < people.length - 1; i++)
 			{
-				
-				for (int j = 0; j < people1.length - 1; j++)
+				int minIndex = i;
+				for (int j = i + 1; j < people.length; j++)
 				{
-					if (people1[j].FName.compareTo(people1[i].FName) < 0);
+					if (people[j].FName.compareTo(people[minIndex].FName) < 0)
 					{
-						temp = people1[j];
-						people1[j] = people1[i];
-						people1[j] = temp;
+						minIndex = j;
 					}
 					
 				}
-				
+				temp = people[minIndex];
+				people[minIndex] = people[i];
+				people[i] = temp;
 				
 			}
+		}
+		
+		private static void insertionSort(Person[] people)
+		{
+			
 		}
 }
