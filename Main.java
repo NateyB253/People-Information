@@ -114,6 +114,17 @@ public class Main {
 		
 		private static void insertionSort(Person[] people)
 		{
-			
+			for(int i = 1; i < people.length; i++)
+			{
+				Person key = people[i];
+				int j = i - 1;
+				
+				while(j >= 0 && key.State.compareTo(people[j].State) < 0)
+				{
+					people[j+1] = people[j];
+					j--;
+				}
+			people[j+1] = key;
+			}
 		}
 }
